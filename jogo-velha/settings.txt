@@ -1,0 +1,60 @@
+1ª Parte - Estrutra Marcação/Estilo
+
+1. Tags:
+
+	* header: Título Jogo da Velha
+	* game-board: Tabuleiro
+	* square: Cada peça do tabuleiro
+	* game-over: Fim de jogo
+
+2. Estilo:
+
+	* header: Uppercase (--white: #FFFFFF;)
+	* game-board: Centralizado na viewport (--black: #013140;)
+	* square: width=height: 150px; (--light-color: #05c3ff;  hover: --dark-color: #101c2c;)
+	* game-over: botão (--yellow: #FFFF00;)
+	* font: Righteous
+
+3. Symbols:
+
+	* Jogador 'O' (Pseudo-Elemento)
+	* Jogador 'X' (Pseudo-Elemento)
+
+1ª Parte - Estrutura Script
+
+1. Carregar documento: DOMContentLoaded
+
+	* Adicionar evento 'click' em cada square
+
+2. Identificar square (Interface): handleClick()
+
+	* Pegar a position do click e enviar ao handleMove(position)
+	* Solicitar ao tabuleiro updateSquare()
+
+3. Executar o movimento (Game): handleMove(position)
+
+	* Mapear game-board
+	* Verificar gameBoard[position] == ''
+	* Adicionar na position do board o symbol do playerTime
+	* Alterar o playerTime
+
+3. Atualizar o tabuleiro (Interface): updateSquare();
+
+	* Adicionar innerHTML se symbol
+
+2ª Parte - Estrutura Script
+
+1. Verificar Fim de Jogo (Game): isWin()
+
+	* Mapear gameBoard e verificar condições de vitória
+	* Verificar gameOver antes do movimento e da troca do playerTime
+	* Retornar a condição de vitória
+	* Verificar velha
+
+2. Mudança do board (Interface): handleClick()
+
+	* Verificar o retorno do gameOver e disparar o vencedor com delay
+
+3. Botão Restart Game (Interface): restarGame()
+
+	* Resetar gameBoard, playerTime, gameOver, counter e squares
