@@ -1,0 +1,54 @@
+1ª Parte - Estrutura Marcação/Estilo
+
+1. Tags:
+
+	* header: Título Jogo da Memória
+	* game-board: Tabuleiro
+	* card: data-icon, id, card-front e card-back
+	* game-over: Título e botão restart
+
+2. Estilo:
+
+	* header: Uppercase (--white: #FFFFFF;)
+	* game-board: Centralizado na viewport (--black: #202124;)
+	* card: width=height: 150px; (--light-color: #05c3ff;  hover: --dark-color: #101c2c;) flip com backface-visibility/transform-style
+	* game-over: botão (--yellow: #FFFF00;)
+	* font: Righteous
+
+1ª Parte - Estrutura Script
+
+1. Modelo de Carta (game):
+
+    * Array de techs[]
+    * createCardFromTechs() forEach em tech criar os pares createPairFromTech(id, icon e flipped)
+    * Adicionar os pares em cards[]
+    * Desmembrar os pares cards.flatMap(callback) de cada pair
+
+2ª Parte Embaralhar (game)
+
+    * StartGame() irá executar CreateCardsFromTechs e shuffleCards()
+    * shuffleCards() irá alterar os valores dos cards[] criados por referência
+    * Inverção de valores [[randomIndex],[currentIndex]] = [[currentIndex],[randomIndex]]
+
+3ª Parte Tabuleiro (interface)
+
+    * Initialize(cards) criar cada cardElement(id, class, data-icon e function flipCard()) com cardFace (front/back)
+    * Adicionar cardElement ao gameBoard
+    * createCardContent(card, cardElement) criar cada face do cardElement
+
+4ª Parte Regras do jogo
+
+    * Realizar flipCard(setCard()) se (lockMode == false || flipped == false)
+    * Armazenar firstCard e secondCard setCard()
+    * checkMatch() V: clearCards() F: classList.remove('flip') e clearCards() - IMPORTANTE INTERVALO DE TEMPO
+    * Bugs: checkMatch() verificar se !firstCard e !secondCard
+    * Bugs: card.flipped: true setCard() e card.flipped: false unflipCards() se F: checkMatch()
+
+5ª Parte GameOver
+
+	* Condição de gameOver card.flipped(false).length == 0
+	* Verificar após o checkMatch()
+	* Alterar display gameOver 'flex'
+	* restart() chama startGame(), clearCards(), display gameOver = 'none'
+	* gameBoard HTML = ''
+    * Bug: declarar array cards = null
